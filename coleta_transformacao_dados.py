@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-cities = ['fortaleza', 'rio_de_janeiro', 'curitiba', 'maringa', 'belo_horizonte', 'divinopolis']
+cities = ['fortaleza', 'rio_de_janeiro', 'curitiba', 'maringa', 'belo_horizonte', 'divinopolis', 'vitoria']
 
 
 # %%
