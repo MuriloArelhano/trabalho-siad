@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-cities = ['fortaleza', 'rio_de_janeiro', 'curitiba', 'maringa', 'belo_horizonte', 'divinopolis', 'vitoria', 'barbacena']
+cities = ['fortaleza', 'rio_de_janeiro', 'curitiba', 'maringa',
+          'belo_horizonte', 'divinopolis', 'vitoria', 'barbacena']
 
 
 # %%
@@ -34,7 +35,8 @@ def transformDengueData(citiesNameArray):
 
 
 df_dengue = transformDengueData(cities)
-print(df_dengue)
+print(df_dengue.shape)
+df_dengue.head()
 
 
 # %%
@@ -60,7 +62,8 @@ def transformClimaData(citiesNameArray):
 
 
 df_clima = transformClimaData(cities)
-print(df_clima)
+print(df_clima.shape)
+df_clima.head()
 
 
 # %%
@@ -69,11 +72,18 @@ df_final = pd.merge(df_clima, df_dengue, left_on=['data_medicao', 'cidade'],
                     right_on=['data_iniSE', 'cidade'], how='inner', suffixes=('_y', '_x'))
 df_final = df_final.drop(columns=['data_iniSE'])
 df_final = df_final.sort_values(by=['data_medicao'])
-print(df_final)
+print(df_final.shape)
+df_final.head()
 
 
 # %%
-df_final_graph = df_final.pivot(index='data_medicao', columns='cidade', values='casos')
-df_final_graph.plot()
+df_final_graph = df_final.pivot(
+    index='data_medicao', columns='cidade', values='casos')
+df_final_graph.plot(figsize=(15, 7))
+
+
+# %%
+
+# %%
 
 # %%
