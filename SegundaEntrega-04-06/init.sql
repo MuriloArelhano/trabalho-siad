@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS clima (
    temp_med_celsius float(8) NOT NULL,
    temp_min_celsius float(8) NOT NULL,
    temp_max_celsius float(8) NOT NULL,
-   precipitacao_mensal_mm INT NOT NULL,
+   precipitacao_mensal_mm float(8) NOT NULL,
    data_id INT NOT NULL,
    cidade_id INT NOT NULL,
    FOREIGN KEY (data_id) REFERENCES data (id),
