@@ -1,21 +1,21 @@
 CREATE TABLE IF NOT EXISTS data (
    id serial PRIMARY KEY,
-   mes SMALLINT NOT NULL,
-   ano SMALLINT NOT NULL
+   mes INT NOT NULL,
+   ano INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS cidade (
    id serial PRIMARY KEY,
-   nome VARCHAR (100) NOT NULL,
-   estado VARCHAR (2) NOT NULL
+   nome VARCHAR NOT NULL,
+   estado VARCHAR NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS clima (
    id serial PRIMARY KEY,
-   temp_med_celsius float(8) NOT NULL,
-   temp_min_celsius float(8) NOT NULL,
-   temp_max_celsius float(8) NOT NULL,
-   precipitacao_mensal_mm float(8) NOT NULL,
+   temp_med_celsius double NOT NULL,
+   temp_min_celsius double NOT NULL,
+   temp_max_celsius double NOT NULL,
+   precipitacao_mensal_mm double NOT NULL,
    data_id INT NOT NULL,
    cidade_id INT NOT NULL,
    FOREIGN KEY (data_id) REFERENCES data (id),
@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS dengue (
    n_casos INT NOT NULL,
    data_id INT NOT NULL,
    cidade_id INT NOT NULL,
+   clima_id INT NOT NULL, 
    FOREIGN KEY (data_id) REFERENCES data (id),
-   FOREIGN KEY (cidade_id) REFERENCES cidade (id)
+   FOREIGN KEY (cidade_id) REFERENCES cidade (id),
+   FOREIGN KEY (clima_id) REFERENCES clima (id)
 );
