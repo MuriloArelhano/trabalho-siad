@@ -24,11 +24,13 @@ df_final_cidades_estados = df_final[['cidade', 'estado', 'pop']].copy()
 df_final_cidades_estados_no_duplicates = df_final_cidades_estados.drop_duplicates()
 df_final_cidades_estados_no_duplicates
 
+
 # %%
 # Criando estrutura do banco de dados
 try:
     conn = psql.connect(database="teste",
                         user='postgres', password='teste',
+
                         host='localhost', port='5433')
     cursor = conn.cursor()
 
@@ -44,6 +46,7 @@ try:
         nome VARCHAR NOT NULL,
         estado VARCHAR NOT NULL,
         pop double precision NOT NULL);
+
     """)
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS clima (
@@ -90,6 +93,7 @@ try:
     for ind in df_final_cidades_estados_no_duplicates.index:
         cidade = df_final_cidades_estados_no_duplicates['cidade'][ind]
         estado = df_final_cidades_estados_no_duplicates['estado'][ind]
+        
         pop = df_final_cidades_estados_no_duplicates['pop'][ind]
         cursor.execute(
             "INSERT INTO cidade (nome, estado, pop) VALUES (%s, %s, %s) RETURNING id", (cidade, estado, pop))
@@ -123,5 +127,3 @@ try:
 except Exception as e:
     print(e)
 
-
-# %%
