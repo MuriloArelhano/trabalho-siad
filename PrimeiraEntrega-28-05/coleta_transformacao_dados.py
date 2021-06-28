@@ -101,3 +101,5 @@ df_final_graph = df_final.pivot(
     index='data_medicao', columns='cidade', values='casos')
 df_final_graph.plot(figsize=(15, 7))
 
+print("Tudo okay")
+# %%

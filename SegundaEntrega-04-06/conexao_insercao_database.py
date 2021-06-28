@@ -28,10 +28,10 @@ df_final_cidades_estados_no_duplicates
 # %%
 # Criando estrutura do banco de dados
 try:
-    conn = psql.connect(database="teste",
-                        user='postgres', password='teste',
+    conn = psql.connect(database="dwdengue",
+                        user='root', password='root',
 
-                        host='localhost', port='5433')
+                        host='localhost', port='5434')
     cursor = conn.cursor()
 
     cursor.execute("""

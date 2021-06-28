@@ -11,9 +11,9 @@ psql.extensions.register_adapter(np.int64, psql._psycopg.AsIs)
 # %%
 # Coletando os dados do database
 try:
-    conn = psql.connect(database="teste",
-                        user='postgres', password='teste',
-                        host='localhost', port='5433')
+    conn = psql.connect(database="dwdengue",
+                        user='root', password='root',
+                        host='localhost', port='5434')
     cursor = conn.cursor()
     db_dataframe = pd.read_sql_query("""select data.mes, data.ano, cidade.nome as cidade, cidade.pop, cidade.estado, dengue.n_casos, clima.temp_max_celsius, clima.temp_med_celsius, clima.temp_min_celsius, clima.umidade_relativa, clima.precipitacao_mensal_mm
         from dengue
@@ -85,5 +85,7 @@ final_dataframe_graph = final_dataframe.pivot(index='data', columns='cidade', va
 
 final_dataframe_graph.plot(figsize=(15, 7), title="Relação crescimento dos casos temperatura média", xlim=[
                            datetime.date(2012, 1, 1), datetime.date(2016, 5, 1)], style='-o')
+
+# %%
 
 # %%
